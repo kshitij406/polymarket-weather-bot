@@ -1,0 +1,44 @@
+name: Forecast Job
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run forecast job
+        run: python -m bot.pipeline.forecast_job
+        env:
+          VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
+          TOMORROW_IO_API_KEY: ${{ secrets.TOMORROW_IO_API_KEY }}
+          WUNDERGROUND_API_KEY: ${{ secrets.WUNDERGROUND_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Commit DB if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/weather_bot.db
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git pull --rebase origin main
+            git commit -m "chore: forecast fetch [skip ci]"
+            git push
+          fi
