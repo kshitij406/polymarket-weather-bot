@@ -12,7 +12,6 @@ from ..config import Station
 logger = logging.getLogger(__name__)
 
 BASE_ENSEMBLE = "https://ensemble-api.open-meteo.com/v1/ensemble"
-BASE_ARCHIVE = "https://api.open-meteo.com/v1/archive"
 
 
 @dataclass
@@ -108,54 +107,47 @@ def fetch_ukmo(station: Station, target_date: date) -> Optional[EnsembleForecast
     return _fetch_ensemble(station, "ukmo_seamless", "ukmo", target_date)
 
 
+BASE_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
+
+
 def fetch_era5_climatology(station: Station, target_date: date, window_days: int = 7, years: int = 30) -> Optional[DeterministicForecast]:
-    """Fetch ERA5 daily max temps for a ±window_days calendar window over the last `years` years."""
+    """Fetch ERA5 daily max temps in a single request covering the full multi-year range."""
     from datetime import timedelta
-    import calendar
+
+    import numpy as np
 
     current_year = datetime.now().year
     start_year = current_year - years
-    mm = target_date.month
-    dd = target_date.day
 
-    all_temps: list[float] = []
-    raw_records = []
+    range_start = date(start_year, target_date.month, target_date.day) - timedelta(days=window_days)
+    range_end = date(current_year - 1, target_date.month, target_date.day) + timedelta(days=window_days)
+
+    params = {
+        "latitude": station.lat,
+        "longitude": station.lon,
+        "daily": "temperature_2m_max",
+        "start_date": str(range_start),
+        "end_date": str(range_end),
+        "timezone": station.timezone,
+    }
     fetched_at = datetime.now(timezone.utc).isoformat()
-
-    for year in range(start_year, current_year):
-        window_start = date(year, mm, dd) - timedelta(days=window_days)
-        window_end = date(year, mm, dd) + timedelta(days=window_days)
-
-        if window_start.year != year:
-            window_start = date(year, 1, 1)
-        if window_end.year != year:
-            window_end = date(year, 12, 31)
-
-        params = {
-            "latitude": station.lat,
-            "longitude": station.lon,
-            "daily": "temperature_2m_max",
-            "start_date": str(window_start),
-            "end_date": str(window_end),
-            "timezone": station.timezone,
-        }
-        try:
-            data = _get_with_retry(BASE_ARCHIVE, params)
-            temps = [v for v in data.get("daily", {}).get("temperature_2m_max", []) if v is not None]
-            all_temps.extend(temps)
-            raw_records.append({"year": year, "n": len(temps)})
-        except Exception as exc:
-            logger.warning("ERA5 fetch for year %d failed: %s", year, exc)
-
-    if not all_temps:
+    try:
+        data = _get_with_retry(BASE_ARCHIVE, params)
+    except Exception as exc:
+        logger.warning("ERA5 climatology fetch failed: %s", exc)
         return None
 
-    import numpy as np
+    all_temps = [v for v in data.get("daily", {}).get("temperature_2m_max", []) if v is not None]
+    if not all_temps:
+        logger.warning("ERA5 climatology returned no data for %s", target_date)
+        return None
+
+    logger.info("ERA5 climatology: %d samples for %s (range %s to %s)", len(all_temps), target_date, range_start, range_end)
     return DeterministicForecast(
         source_name="era5_climatology",
         fetched_at=fetched_at,
         target_date=str(target_date),
         det_temp_max_c=float(np.mean(all_temps)),
         det_temp_min_c=float(np.std(all_temps, ddof=1)),
-        raw_json=json.dumps({"n_samples": len(all_temps), "records": raw_records, "all_temps": all_temps}),
+        raw_json=json.dumps({"n_samples": len(all_temps), "start_date": str(range_start), "end_date": str(range_end), "all_temps": all_temps}),
     )
