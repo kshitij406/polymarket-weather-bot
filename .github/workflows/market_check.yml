@@ -34,8 +34,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/weather_bot.db
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git stash
-          git pull --rebase origin main
-          git stash pop
-          git commit -m "chore: market check [skip ci]"
-          git push origin main
+          git commit -m "chore: auto-update db [skip ci]"
+          git push origin main || (git pull --rebase origin main && git push origin main)

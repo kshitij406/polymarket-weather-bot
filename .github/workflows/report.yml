@@ -31,10 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add REPORT.md data/weather_bot.db
+          git add data/weather_bot.db REPORT.md
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git stash
-          git pull --rebase origin main
-          git stash pop
-          git commit -m "chore: weekly report [skip ci]"
-          git push origin main
+          git commit -m "chore: auto-update db [skip ci]"
+          git push origin main || (git pull --rebase origin main && git push origin main)
