@@ -27,11 +27,14 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
+      - name: Generate summary
+        run: python scripts/summarize_db.py
+
       - name: Commit report and DB
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/weather_bot.db REPORT.md
+          git add data/weather_bot.db REPORT.md SUMMARY.md
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore: auto-update db [skip ci]"
           git push origin main || (git pull --rebase origin main && git push origin main)
