@@ -136,7 +136,7 @@ def parse_temperature_markets(
         if "void" in (m.get("resolutionNotes") or "").lower():
             is_voided = True
 
-        temp_metric = "min" if re.search(r"\bmin\b", question, re.I) else "max"
+        temp_metric = "min" if re.search(r"\b(min|lowest|minimum|low)\b", question, re.I) else "max"
 
         bucket_label, bucket_bounds = _extract_bucket(question)
 

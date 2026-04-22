@@ -71,6 +71,8 @@ def _process_market(market, station, now):
 
     if not market.target_date or not market.is_active or market.is_voided:
         return
+    if market.temp_metric != "max":
+        return
 
     snap = get_latest_probability_snapshot(str(market.target_date), station.icao)
     if snap is None:
