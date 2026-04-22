@@ -4,7 +4,7 @@ Fetches active Polymarket weather markets, computes edge against our probability
 snapshots, and writes predictions for markets with sufficient edge.
 """
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 from ..alerts import send_alert
 from ..config import EDGE_THRESHOLD_PP, HYPOTHETICAL_STAKE_USD, STATIONS
@@ -22,8 +22,6 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 logger = logging.getLogger(__name__)
 
 EDGE_THRESHOLD = EDGE_THRESHOLD_PP / 100.0
-DEDUP_MINUTES = 30
-DEDUP_EDGE_TOLERANCE = 0.01
 
 
 def main():
@@ -90,13 +88,9 @@ def _process_market(market, station, now):
         return
 
     recent = get_recent_prediction_for_market(market.market_id, str(market.target_date))
-    if recent:
-        recent_time = datetime.fromisoformat(recent["predicted_at"])
-        age_minutes = (now - recent_time).total_seconds() / 60
-        recent_edge = recent["recommended_edge"]
-        if age_minutes < DEDUP_MINUTES and abs(recent_edge - best_edge) < DEDUP_EDGE_TOLERANCE:
-            logger.debug("Dedup skip: market %s edge %.3f < %d min ago", market.market_id, best_edge, DEDUP_MINUTES)
-            return
+    if recent and recent["recommended_bucket"] == best_bucket:
+        logger.debug("Dedup skip: already predicted market %s bucket %s", market.market_id, best_bucket)
+        return
 
     insert_prediction(
         predicted_at=now.isoformat(),
