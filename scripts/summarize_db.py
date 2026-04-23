@@ -128,8 +128,10 @@ def section_performance(conn) -> str:
         return "## Performance Summary\n\n_No predictions yet._\n"
 
     total = len(rows)
+    pending = [r for r in rows if r["resolution_status"] == "pending"]
     resolved = [r for r in rows if r["resolution_status"] == "resolved"]
     wins = [r for r in resolved if r["win"] == 1]
+    pending_staked = sum(r["hypothetical_stake_usd"] for r in pending)
     staked = sum(r["hypothetical_stake_usd"] for r in resolved)
     returned = sum(r["hypothetical_payout_usd"] or 0.0 for r in resolved)
     net_pl = returned - staked
@@ -142,11 +144,12 @@ def section_performance(conn) -> str:
         "| Metric | Value |",
         "|--------|-------|",
         f"| Total predictions | {total} |",
+        f"| Pending | {len(pending)} (${pending_staked:.2f} at stake) |",
         f"| Resolved | {len(resolved)} |",
         f"| Wins | {len(wins)} |",
         f"| Losses | {len(resolved) - len(wins)} |",
         f"| Win rate | {win_rate:.1f}% |",
-        f"| Total staked | ${staked:.2f} |",
+        f"| Total staked (resolved) | ${staked:.2f} |",
         f"| Total returned | ${returned:.2f} |",
         f"| Net P&L | ${net_pl:+.2f} |",
         f"| ROI | {roi:+.1f}% |",
