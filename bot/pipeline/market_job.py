@@ -4,7 +4,7 @@ Fetches active Polymarket weather markets, computes edge against our probability
 snapshots, and writes predictions for markets with sufficient edge.
 """
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from ..alerts import send_alert
 from ..config import EDGE_THRESHOLD_PP, HYPOTHETICAL_STAKE_USD, STATIONS
@@ -22,6 +22,26 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 logger = logging.getLogger(__name__)
 
 EDGE_THRESHOLD = EDGE_THRESHOLD_PP / 100.0
+# Only bet when this many hours remain before the market closes.
+# Prevents betting on same-day markets after the weather has already played out.
+MIN_LEAD_HOURS = 12
+
+
+def _hours_to_close(market, now: datetime) -> float:
+    """Hours remaining until the market closes/resolves."""
+    if market.closes_at:
+        close = market.closes_at
+        if close.tzinfo is None:
+            close = close.replace(tzinfo=timezone.utc)
+        return (close - now).total_seconds() / 3600
+    if market.target_date:
+        # Assume market closes at 23:59 UTC on the target date
+        assumed = datetime(
+            market.target_date.year, market.target_date.month, market.target_date.day,
+            23, 59, 0, tzinfo=timezone.utc,
+        )
+        return (assumed - now).total_seconds() / 3600
+    return -1.0
 
 
 def main():
@@ -70,6 +90,14 @@ def _process_market(market, station, now):
     if not market.target_date or not market.is_active or market.is_voided:
         return
     if market.temp_metric != "max":
+        return
+
+    hours_left = _hours_to_close(market, now)
+    if hours_left < MIN_LEAD_HOURS:
+        logger.debug(
+            "Skipping %s %s: only %.1fh until close (min %dh)",
+            market.market_id, market.target_date, hours_left, MIN_LEAD_HOURS,
+        )
         return
 
     snap = get_latest_probability_snapshot(str(market.target_date), station.icao)
