@@ -89,6 +89,17 @@ def fetch(station_id: str, target_date: date) -> Optional[WundergroundObservatio
             _SCRAPED_KEY_CACHE.clear()
             logger.warning("Wunderground API key rejected (HTTP %d), clearing cache", resp.status_code)
             return None
+        if resp.status_code == 204 or not resp.text.strip():
+            logger.info("No Wunderground data yet for %s %s (HTTP %d)", station_id, target_date, resp.status_code)
+            return WundergroundObservation(
+                station_id=station_id,
+                date=target_date,
+                temp_high_c=None,
+                temp_low_c=None,
+                temp_avg_c=None,
+                fetched_at=fetched_at,
+                raw_json="{}",
+            )
         resp.raise_for_status()
         data = resp.json()
     except Exception as exc:

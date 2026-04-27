@@ -31,6 +31,7 @@ jobs:
         run: python -m bot.pipeline.resolution_job
         env:
           WUNDERGROUND_API_KEY: ${{ secrets.WUNDERGROUND_API_KEY }}
+          VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
       - name: Generate summary

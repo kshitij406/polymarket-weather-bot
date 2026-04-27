@@ -15,6 +15,7 @@ from ..database import (
     insert_resolution_observation,
     update_prediction_resolution,
 )
+from ..fetchers.visual_crossing import fetch as vc_fetch
 from ..fetchers.wunderground import WundergroundObservation, fetch as wu_fetch
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
@@ -131,6 +132,25 @@ def main():
                 send_alert(job="resolution_job", error=exc)
                 continue
 
+            if obs is None or obs.temp_high_c is None:
+                logger.info("Wunderground has no data for %s %s, trying Visual Crossing", station.icao, target_date)
+                try:
+                    vc = vc_fetch(station, target_date)
+                    if vc is not None and vc.det_temp_max_c is not None:
+                        obs = WundergroundObservation(
+                            station_id=station.icao,
+                            date=target_date,
+                            temp_high_c=vc.det_temp_max_c,
+                            temp_low_c=vc.det_temp_min_c,
+                            temp_avg_c=vc.det_temp_avg_c,
+                            fetched_at=resolved_at,
+                            raw_json=vc.raw_json,
+                        )
+                        logger.info("Visual Crossing fallback succeeded for %s %s: high=%.1f low=%.1f",
+                                    station.icao, target_date, vc.det_temp_max_c, vc.det_temp_min_c or 0)
+                except Exception as exc:
+                    logger.warning("Visual Crossing fallback failed for %s %s: %s", station.icao, target_date, exc)
+
             data_available = int(obs is not None and obs.temp_high_c is not None)
 
             obs_id = insert_resolution_observation(
@@ -145,7 +165,7 @@ def main():
             )
 
             if not data_available:
-                logger.info("No Wunderground data yet for %s %s", station.icao, target_date)
+                logger.info("No observation data for %s %s from any source", station.icao, target_date)
                 continue
 
             for pred in pending:
