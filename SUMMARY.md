@@ -1,6 +1,6 @@
 # Bot Summary
 
-_Generated: 2026-04-27 15:49 UTC_
+_Generated: 2026-04-27 16:08 UTC_
 
 ## Probability Snapshots
 
@@ -261,25 +261,25 @@ _Generated: 2026-04-27 15:49 UTC_
 | 2026-04-26T16:05 | 2026-04-27 | EGLC | 22°C | 11.2pp | 8.5% | pending | — | — |
 | 2026-04-26T09:30 | 2026-04-28 | EGLC | 18°C | 10.5pp | 1.8% | pending | — | — |
 | 2026-04-25T17:09 | 2026-04-27 | EGLC | 18°C | 10.1pp | 1.3% | pending | — | — |
-| 2026-04-24T19:29 | 2026-04-25 | EGLC | 21°C | 20.3pp | 23.5% | pending | — | — |
-| 2026-04-24T19:29 | 2026-04-25 | EGLC | 22°C | 14.6pp | 4.6% | pending | — | — |
-| 2026-04-24T14:53 | 2026-04-25 | EGLC | 19°C | 10.4pp | 6.5% | pending | — | — |
-| 2026-04-23T08:26 | 2026-04-24 | EGLC | 19°C | 10.2pp | 24.0% | pending | — | — |
-| 2026-04-22T16:59 | 2026-04-23 | EGLC | 18°C | 10.5pp | 28.0% | pending | — | — |
-| 2026-04-22T15:50 | 2026-04-22 | EGLC | 16°C | 32.3pp | 6.0% | pending | — | — |
-| 2026-04-21T08:20 | 2026-04-22 | EGLC | 15°C | 32.4pp | 27.5% | pending | — | — |
+| 2026-04-24T19:29 | 2026-04-25 | EGLC | 21°C | 20.3pp | 23.5% | resolved | ✗ | $-10.00 |
+| 2026-04-24T19:29 | 2026-04-25 | EGLC | 22°C | 14.6pp | 4.6% | resolved | ✗ | $-10.00 |
+| 2026-04-24T14:53 | 2026-04-25 | EGLC | 19°C | 10.4pp | 6.5% | resolved | ✗ | $-10.00 |
+| 2026-04-23T08:26 | 2026-04-24 | EGLC | 19°C | 10.2pp | 24.0% | resolved | ✗ | $-10.00 |
+| 2026-04-22T16:59 | 2026-04-23 | EGLC | 18°C | 10.5pp | 28.0% | resolved | ✗ | $-10.00 |
+| 2026-04-22T15:50 | 2026-04-22 | EGLC | 16°C | 32.3pp | 6.0% | resolved | ✗ | $-10.00 |
+| 2026-04-21T08:20 | 2026-04-22 | EGLC | 15°C | 32.4pp | 27.5% | resolved | ✓ | $+26.36 |
 
 ## Performance Summary
 
 | Metric | Value |
 |--------|-------|
 | Total predictions | 13 |
-| Pending | 13 ($130.00 at stake) |
-| Resolved | 0 |
-| Wins | 0 |
-| Losses | 0 |
-| Win rate | 0.0% |
-| Total staked (resolved) | $0.00 |
-| Total returned | $0.00 |
-| Net P&L | $+0.00 |
-| ROI | +0.0% |
+| Pending | 6 ($60.00 at stake) |
+| Resolved | 7 |
+| Wins | 1 |
+| Losses | 6 |
+| Win rate | 14.3% |
+| Total staked (resolved) | $70.00 |
+| Total returned | $36.36 |
+| Net P&L | $-33.64 |
+| ROI | -48.1% |
