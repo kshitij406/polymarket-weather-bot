@@ -1,12 +1,12 @@
 # Polymarket Weather Bot — Performance Report
-Generated: 2026-04-26 07:46 UTC
+Generated: 2026-04-27 16:16 UTC
 Stations: EGLC (London City Airport)
-Period: 2026-04-21 to 2026-04-25
+Period: 2026-04-21 to 2026-04-27
 
 ## Summary
 | Metric | Value |
 |--------|-------|
-| Total predictions | 8 |
+| Total predictions | 13 |
 | Resolved | 0 |
 | Wins | 0 |
 | Losses | 0 |
@@ -15,7 +15,7 @@ Period: 2026-04-21 to 2026-04-25
 | Total hypothetical returned | $0.00 |
 | Net profit/loss | $+0.00 |
 | ROI | +0.0% |
-| Pending | 8 |
+| Pending | 13 |
 | Voided/no-data (excluded) | 0 |
 
 ## Performance by Edge Tier
@@ -41,6 +41,11 @@ Period: 2026-04-21 to 2026-04-25
 ## Recent Predictions (Last 30 Days)
 | Date | Market | Bucket | Our P% | Mkt P% | Edge | Win? | Net P&L |
 |------|--------|--------|--------|--------|------|------|---------|
+| 2026-04-27 | Will the highest temperature in London b | 15 | 16.4% | 4.5% | 11.9pp | — | — |
+| 2026-04-27 | Will the highest temperature in London b | 16 | 43.2% | 28.5% | 14.7pp | — | — |
+| 2026-04-26 | Will the highest temperature in London b | 14 | 20.4% | 8.5% | 11.9pp | — | — |
+| 2026-04-26 | Will the highest temperature in London b | 22 | 19.7% | 8.5% | 11.2pp | — | — |
+| 2026-04-26 | Will the highest temperature in London b | 18 | 12.3% | 1.8% | 10.5pp | — | — |
 | 2026-04-25 | Will the highest temperature in London b | 18 | 11.4% | 1.3% | 10.1pp | — | — |
 | 2026-04-24 | Will the highest temperature in London b | 21 | 43.8% | 23.5% | 20.3pp | — | — |
 | 2026-04-24 | Will the highest temperature in London b | 22 | 19.2% | 4.6% | 14.6pp | — | — |
