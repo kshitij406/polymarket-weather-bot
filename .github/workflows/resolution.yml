@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Refresh DB from latest remote
+        run: git fetch origin main && git checkout origin/main -- data/weather_bot.db || true
+
       - name: Run resolution job
         run: python -m bot.pipeline.resolution_job
         env:
