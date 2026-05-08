@@ -126,6 +126,10 @@ def parse_temperature_markets(
             outcomes = ["Yes", "No"]
 
         yes_price = prices[0]
+        for idx, outcome in enumerate(outcomes):
+            if str(outcome).strip().lower() == "yes" and idx < len(prices):
+                yes_price = prices[idx]
+                break
 
         is_voided = False
         res_source = m.get("resolutionSource") or ""
