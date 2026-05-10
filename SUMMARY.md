@@ -1,6 +1,6 @@
 # Bot Summary
 
-_Generated: 2026-05-10 08:29 UTC_
+_Generated: 2026-05-10 09:40 UTC_
 
 ## Probability Snapshots
 
@@ -590,9 +590,9 @@ _Generated: 2026-05-10 08:29 UTC_
 | 2026-05-10T08:26 | 2026-05-11 | EGLC | 12°C | 12.8pp | 17.5% | pending | — | — |
 | 2026-05-09T19:57 | 2026-05-11 | EGLC | 11°C | 10.9pp | 2.6% | pending | — | — |
 | 2026-05-09T01:17 | 2026-05-10 | EGLC | 17°C | 10.1pp | 6.0% | pending | — | — |
-| 2026-05-07T19:45 | 2026-05-09 | EGLC | 18°C | 20.7pp | 7.6% | pending | — | — |
-| 2026-05-07T19:45 | 2026-05-09 | EGLC | 19°C | 15.5pp | 31.5% | pending | — | — |
-| 2026-05-07T15:42 | 2026-05-09 | EGLC | 17°C | 12.1pp | 0.9% | pending | — | — |
+| 2026-05-07T19:45 | 2026-05-09 | EGLC | 18°C | 20.7pp | 7.6% | resolved | ✗ | $-10.00 |
+| 2026-05-07T19:45 | 2026-05-09 | EGLC | 19°C | 15.5pp | 31.5% | resolved | ✗ | $-10.00 |
+| 2026-05-07T15:42 | 2026-05-09 | EGLC | 17°C | 12.1pp | 0.9% | resolved | ✗ | $-10.00 |
 | 2026-05-07T02:48 | 2026-05-08 | EGLC | 18°C | 10.6pp | 28.5% | resolved | ✓ | $+25.09 |
 | 2026-05-06T05:57 | 2026-05-08 | EGLC | 16°C | 11.8pp | 2.4% | resolved | ✗ | $-10.00 |
 | 2026-05-06T05:57 | 2026-05-08 | EGLC | 17°C | 16.2pp | 5.7% | resolved | ✗ | $-10.00 |
@@ -630,12 +630,12 @@ _Generated: 2026-05-10 08:29 UTC_
 | Metric | Value |
 |--------|-------|
 | Total predictions | 37 |
-| Pending | 6 ($60.00 at stake) |
-| Resolved | 31 |
+| Pending | 3 ($30.00 at stake) |
+| Resolved | 34 |
 | Wins | 4 |
-| Losses | 27 |
-| Win rate | 12.9% |
-| Total staked (resolved) | $310.00 |
+| Losses | 30 |
+| Win rate | 11.8% |
+| Total staked (resolved) | $340.00 |
 | Total returned | $382.96 |
-| Net P&L | $+72.96 |
-| ROI | +23.5% |
+| Net P&L | $+42.96 |
+| ROI | +12.6% |
