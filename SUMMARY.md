@@ -1,6 +1,6 @@
 # Bot Summary
 
-_Generated: 2026-05-15 08:21 UTC_
+_Generated: 2026-05-15 10:27 UTC_
 
 ## Probability Snapshots
 
@@ -727,7 +727,7 @@ _Generated: 2026-05-15 08:21 UTC_
 | Predicted At | Date | Station | Bucket | Edge | Mkt Price | Status | Win | Net P&L |
 |--------------|------|---------|--------|------|-----------|--------|-----|---------|
 | 2026-05-13T18:23 | 2026-05-15 | EGLC | 13°C | 12.2pp | 31.0% | pending | — | — |
-| 2026-05-12T23:00 | 2026-05-14 | EGLC | 12°C | 10.2pp | 13.5% | pending | — | — |
+| 2026-05-12T23:00 | 2026-05-14 | EGLC | 12°C | 10.2pp | 13.5% | resolved | ✓ | $+64.07 |
 | 2026-05-12T20:28 | 2026-05-13 | EGLC | 13°C | 11.8pp | 36.0% | resolved | ✗ | $-10.00 |
 | 2026-05-12T11:55 | 2026-05-13 | EGLC | 14°C | 12.2pp | 22.5% | resolved | ✗ | $-10.00 |
 | 2026-05-11T22:32 | 2026-05-13 | EGLC | 15°C | 12.8pp | 9.5% | resolved | ✗ | $-10.00 |
@@ -776,12 +776,12 @@ _Generated: 2026-05-15 08:21 UTC_
 | Metric | Value |
 |--------|-------|
 | Total predictions | 44 |
-| Pending | 2 ($20.00 at stake) |
-| Resolved | 42 |
-| Wins | 5 |
+| Pending | 1 ($10.00 at stake) |
+| Resolved | 43 |
+| Wins | 6 |
 | Losses | 37 |
-| Win rate | 11.9% |
-| Total staked (resolved) | $420.00 |
-| Total returned | $440.10 |
-| Net P&L | $+20.10 |
-| ROI | +4.8% |
+| Win rate | 14.0% |
+| Total staked (resolved) | $430.00 |
+| Total returned | $514.18 |
+| Net P&L | $+84.18 |
+| ROI | +19.6% |
