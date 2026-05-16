@@ -397,3 +397,57 @@ def log_alert(job: str, severity: str, message: str, delivered: int = 0, db_path
             "INSERT INTO alerts_log (fired_at, job, severity, message, delivered) VALUES (?,?,?,?,?)",
             (fired_at, job, severity, message, delivered),
         )
+
+
+def prune_db(
+    raw_json_keep_days: int = 7,
+    market_snapshot_keep_days: int = 30,
+    db_path: Path = DB_PATH,
+) -> dict:
+    """
+    Shrink the database by:
+      1. Nullifying raw_json in forecast_fetches older than raw_json_keep_days
+         (the structured columns are preserved; raw blobs are no longer needed
+         once the probability snapshot has been computed).
+      2. Deleting duplicate market_snapshots older than market_snapshot_keep_days,
+         keeping only the latest row per (market_id, bucket_label, date).
+      3. Running VACUUM so SQLite actually releases the freed pages.
+
+    Returns a dict with row counts affected.
+    """
+    from datetime import timezone
+    cutoff_raw = (datetime.now(timezone.utc) - timedelta(days=raw_json_keep_days)).isoformat()
+    cutoff_mkt = (datetime.now(timezone.utc) - timedelta(days=market_snapshot_keep_days)).isoformat()
+
+    conn = sqlite3.connect(str(db_path))
+    conn.execute("PRAGMA journal_mode=WAL")
+    try:
+        cur = conn.execute(
+            "UPDATE forecast_fetches SET raw_json='{}' WHERE fetched_at < ? AND raw_json != '{}'",
+            (cutoff_raw,),
+        )
+        ff_nullified = cur.rowcount
+
+        cur = conn.execute(
+            """DELETE FROM market_snapshots
+               WHERE fetched_at < ?
+                 AND id NOT IN (
+                     SELECT MAX(id)
+                     FROM market_snapshots
+                     WHERE fetched_at < ?
+                     GROUP BY market_id, bucket_label, DATE(fetched_at)
+                 )""",
+            (cutoff_mkt, cutoff_mkt),
+        )
+        ms_deleted = cur.rowcount
+
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        conn.close()
+        raise
+
+    conn.execute("VACUUM")
+    conn.close()
+
+    return {"forecast_fetches_nullified": ff_nullified, "market_snapshots_deleted": ms_deleted}

@@ -37,6 +37,9 @@ jobs:
           VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
+      - name: Prune DB
+        run: python scripts/prune_db.py
+
       - name: Generate summary
         run: python scripts/summarize_db.py
 
