@@ -2,7 +2,7 @@ import json
 import sqlite3
 from contextlib import contextmanager
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -390,7 +390,6 @@ def get_all_predictions_for_report(db_path: Path = DB_PATH) -> list[dict]:
 
 
 def log_alert(job: str, severity: str, message: str, delivered: int = 0, db_path: Path = DB_PATH) -> None:
-    from datetime import timezone
     fired_at = datetime.now(timezone.utc).isoformat()
     with get_conn(db_path) as conn:
         conn.execute(
@@ -415,7 +414,6 @@ def prune_db(
 
     Returns a dict with row counts affected.
     """
-    from datetime import timezone
     cutoff_raw = (datetime.now(timezone.utc) - timedelta(days=raw_json_keep_days)).isoformat()
     cutoff_mkt = (datetime.now(timezone.utc) - timedelta(days=market_snapshot_keep_days)).isoformat()
 
