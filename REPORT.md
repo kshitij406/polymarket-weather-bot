@@ -1,36 +1,36 @@
 # Polymarket Weather Bot — Performance Report
-Generated: 2026-05-10 08:14 UTC
+Generated: 2026-05-17 08:27 UTC
 Stations: EGLC (London City Airport)
-Period: 2026-04-21 to 2026-05-09
+Period: 2026-04-21 to 2026-05-13
 
 ## Summary
 | Metric | Value |
 |--------|-------|
-| Total predictions | 36 |
-| Resolved | 31 |
-| Wins | 4 |
-| Losses | 27 |
-| Win rate | 12.9% |
-| Total hypothetical staked | $310.00 |
-| Total hypothetical returned | $382.96 |
-| Net profit/loss | $+72.96 |
-| ROI | +23.5% |
-| Pending | 5 |
+| Total predictions | 44 |
+| Resolved | 44 |
+| Wins | 6 |
+| Losses | 38 |
+| Win rate | 13.6% |
+| Total hypothetical staked | $440.00 |
+| Total hypothetical returned | $514.18 |
+| Net profit/loss | $+74.18 |
+| ROI | +16.9% |
+| Pending | 0 |
 | Voided/no-data (excluded) | 0 |
 
 ## Performance by Edge Tier
 | Edge Tier | Predictions | Win Rate | Staked | Returned | Net P&L |
 |-----------|-------------|----------|--------|----------|---------|
-| Low (10–15pp) | 25 | 12% | $250.00 | $346.60 | $+96.60 |
-| Medium (15–20pp) | 3 | 0% | $30.00 | $0.00 | $-30.00 |
-| High (20+pp) | 3 | 33% | $30.00 | $36.36 | $+6.36 |
+| Low (10–15pp) | 36 | 14% | $360.00 | $477.81 | $+117.81 |
+| Medium (15–20pp) | 4 | 0% | $40.00 | $0.00 | $-40.00 |
+| High (20+pp) | 4 | 25% | $40.00 | $36.36 | $-3.64 |
 
 ## Calibration Check
 | Predicted Prob Bucket | Predictions | Actual Win Rate | Calibration Error |
 |----------------------|-------------|-----------------|-------------------|
-| 10–20% | 5 | 20.0% | -5.0pp |
-| 20–30% | 6 | 33.3% | -8.3pp |
-| 30–40% | 0 | — | — |
+| 10–20% | 8 | 37.5% | -22.5pp |
+| 20–30% | 7 | 28.6% | -3.6pp |
+| 30–40% | 3 | 0.0% | +35.0pp |
 | 40–50% | 0 | — | — |
 | 50–60% | 0 | — | — |
 | 60–70% | 0 | — | — |
@@ -41,11 +41,19 @@ Period: 2026-04-21 to 2026-05-09
 ## Recent Predictions (Last 30 Days)
 | Date | Market | Bucket | Our P% | Mkt P% | Edge | Win? | Net P&L |
 |------|--------|--------|--------|--------|------|------|---------|
-| 2026-05-09 | Will the highest temperature in London b | 11 | 13.6% | 2.6% | 10.9pp | — | — |
-| 2026-05-09 | Will the highest temperature in London b | 17 | 16.1% | 6.0% | 10.1pp | — | — |
-| 2026-05-07 | Will the highest temperature in London b | 18 | 28.3% | 7.6% | 20.7pp | — | — |
-| 2026-05-07 | Will the highest temperature in London b | 19 | 47.0% | 31.5% | 15.5pp | — | — |
-| 2026-05-07 | Will the highest temperature in London b | 17 | 13.0% | 0.9% | 12.1pp | — | — |
+| 2026-05-13 | Will the highest temperature in London b | 13 | 43.2% | 31.0% | 12.2pp | ✗ | $-10.00 |
+| 2026-05-12 | Will the highest temperature in London b | 12 | 23.7% | 13.5% | 10.2pp | ✓ | $+64.07 |
+| 2026-05-12 | Will the highest temperature in London b | 13 | 47.8% | 36.0% | 11.8pp | ✗ | $-10.00 |
+| 2026-05-12 | Will the highest temperature in London b | 14 | 34.7% | 22.5% | 12.2pp | ✗ | $-10.00 |
+| 2026-05-11 | Will the highest temperature in London b | 15 | 22.3% | 9.5% | 12.8pp | ✗ | $-10.00 |
+| 2026-05-11 | Will the highest temperature in London b | 14 | 15.1% | 4.0% | 11.1pp | ✗ | $-10.00 |
+| 2026-05-10 | Will the highest temperature in London b | 15 | 25.7% | 15.0% | 10.7pp | ✗ | $-10.00 |
+| 2026-05-10 | Will the highest temperature in London b | 12 | 30.3% | 17.5% | 12.8pp | ✓ | $+47.14 |
+| 2026-05-09 | Will the highest temperature in London b | 11 | 13.6% | 2.6% | 10.9pp | ✗ | $-10.00 |
+| 2026-05-09 | Will the highest temperature in London b | 17 | 16.1% | 6.0% | 10.1pp | ✗ | $-10.00 |
+| 2026-05-07 | Will the highest temperature in London b | 18 | 28.3% | 7.6% | 20.7pp | ✗ | $-10.00 |
+| 2026-05-07 | Will the highest temperature in London b | 19 | 47.0% | 31.5% | 15.5pp | ✗ | $-10.00 |
+| 2026-05-07 | Will the highest temperature in London b | 17 | 13.0% | 0.9% | 12.1pp | ✗ | $-10.00 |
 | 2026-05-07 | Will the highest temperature in London b | 18 | 39.1% | 28.5% | 10.6pp | ✓ | $+25.09 |
 | 2026-05-06 | Will the highest temperature in London b | 16 | 14.2% | 2.4% | 11.8pp | ✗ | $-10.00 |
 | 2026-05-06 | Will the highest temperature in London b | 17 | 21.9% | 5.7% | 16.2pp | ✗ | $-10.00 |
