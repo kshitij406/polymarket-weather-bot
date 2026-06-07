@@ -1,5 +1,5 @@
 # Polymarket Weather Bot — Performance Report
-Generated: 2026-05-31 08:52 UTC
+Generated: 2026-06-07 09:22 UTC
 Stations: EGLC (London City Airport)
 Period: 2026-04-21 to 2026-05-13
 
@@ -51,21 +51,4 @@ Period: 2026-04-21 to 2026-05-13
 | 2026-05-10 | Will the highest temperature in London b | 12 | 30.3% | 17.5% | 12.8pp | ✓ | $+47.14 |
 | 2026-05-09 | Will the highest temperature in London b | 11 | 13.6% | 2.6% | 10.9pp | ✗ | $-10.00 |
 | 2026-05-09 | Will the highest temperature in London b | 17 | 16.1% | 6.0% | 10.1pp | ✗ | $-10.00 |
-| 2026-05-07 | Will the highest temperature in London b | 18 | 28.3% | 7.6% | 20.7pp | ✗ | $-10.00 |
-| 2026-05-07 | Will the highest temperature in London b | 19 | 47.0% | 31.5% | 15.5pp | ✗ | $-10.00 |
-| 2026-05-07 | Will the highest temperature in London b | 17 | 13.0% | 0.9% | 12.1pp | ✗ | $-10.00 |
-| 2026-05-07 | Will the highest temperature in London b | 18 | 39.1% | 28.5% | 10.6pp | ✓ | $+25.09 |
-| 2026-05-06 | Will the highest temperature in London b | 16 | 14.2% | 2.4% | 11.8pp | ✗ | $-10.00 |
-| 2026-05-06 | Will the highest temperature in London b | 17 | 21.9% | 5.7% | 16.2pp | ✗ | $-10.00 |
-| 2026-05-05 | Will the highest temperature in London b | 12 | 22.1% | 6.0% | 16.1pp | ✗ | $-10.00 |
-| 2026-05-05 | Will the highest temperature in London b | 13 | 16.7% | 1.5% | 15.3pp | ✗ | $-10.00 |
-| 2026-05-05 | Will the highest temperature in London b | 14 | 25.9% | 11.2% | 14.7pp | ✓ | $+79.29 |
-| 2026-05-04 | Will the highest temperature in London b | 15 | 25.7% | 11.0% | 14.7pp | ✗ | $-10.00 |
-| 2026-05-04 | Will the highest temperature in London b | 16 | 19.6% | 5.7% | 13.9pp | ✗ | $-10.00 |
-| 2026-05-03 | Will the highest temperature in London b | 15 | 21.3% | 7.5% | 13.8pp | ✗ | $-10.00 |
-| 2026-05-03 | Will the highest temperature in London b | 20 | 16.0% | 5.8% | 10.2pp | ✗ | $-10.00 |
-| 2026-05-02 | Will the highest temperature in London b | 18 | 17.9% | 7.0% | 10.9pp | ✗ | $-10.00 |
-| 2026-05-02 | Will the highest temperature in London b | 19 | 13.5% | 2.8% | 10.7pp | ✗ | $-10.00 |
-| 2026-05-02 | Will the highest temperature in London b | 18 | 24.9% | 13.5% | 11.4pp | ✗ | $-10.00 |
-| 2026-05-01 | Will the highest temperature in London b | 16 | 13.1% | 1.6% | 11.6pp | ✗ | $-10.00 |
 
