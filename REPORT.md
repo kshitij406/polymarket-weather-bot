@@ -1,5 +1,5 @@
 # Polymarket Weather Bot — Performance Report
-Generated: 2026-08-16 06:46 UTC
+Generated: 2026-08-23 06:48 UTC
 Stations: EGLC (London City Airport)
 Period: 2026-04-21 to 2026-05-13
 
